@@ -1,5 +1,7 @@
 package plans;
 
+import homework_exception.EmptyMemberArrayException;
+import homework_exception.MemberLimitExceededException;
 import interfaces.Billable;
 import interfaces.Pausable;
 import interfaces.Sharable;
@@ -61,7 +63,7 @@ public class VideoPlan extends Subscription implements Billable, Pausable, Shara
     @Override
     public void addMember(String userId) {
         if (countMembers >= maxProfiles) {
-            throw new IllegalArgumentException("Количсетво пользователей исчерпано");
+            throw new MemberLimitExceededException();
         }
         members[countMembers++] = userId;
     }
@@ -69,7 +71,7 @@ public class VideoPlan extends Subscription implements Billable, Pausable, Shara
     @Override
     public void removeMember(String userId) {
         if (countMembers == 0) {
-            throw new IllegalArgumentException("Пользователи еще не были добавлены");
+            throw new EmptyMemberArrayException();
         }
         for (int i = 0; i < countMembers; i++) {
             if (members[i].equalsIgnoreCase(userId)) {

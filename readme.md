@@ -80,52 +80,57 @@
 ## Подсказки по сигнатурам
 
 ```java
+import interfaces.Billable;
+import interfaces.Pausable;
+import interfaces.Sharable;
+import interfaces.TrialSupport;
+
 class Subscription {
-    private  String id;
-    private  String title;
-    protected float monthlyPrice;
-    private  int startDate;
-    protected boolean active;
+  private String id;
+  private String title;
+  protected float monthlyPrice;
+  private int startDate;
+  protected boolean active;
 }
 
 class MusicPlan extends Subscription implements Billable, TrialSupport {
-    private  int trialDays = 14;
+  private int trialDays = 14;
 
-    @Override
-    public float monthlyCharge(float forMonth) { ...}
+  @Override
+  public float monthlyCharge(float forMonth) { ...}
 
-    @Override
-    public int trialDays() {
-        return trialDays;
-    }
+  @Override
+  public int trialDays() {
+    return trialDays;
+  }
 
-    @Override
-    public boolean isInTrial(int date) { ...}
+  @Override
+  public boolean isInTrial(int date) { ...}
 }
 
 class VideoPlan extends Subscription implements Billable, Pausable, Sharable {
-    private  int maxProfiles = 4;
-    private  String[] members= new String[];
-    private  PauseWindow[] pauses = new Pauses[5];
+  private int maxProfiles = 4;
+  private String[] members = new String[];
+  private PauseWindow[] pauses = new Pauses[5];
 
-    @Override
-    public int monthlyCharge(float forMonth) { /* пропорция активных дней */ }
+  @Override
+  public int monthlyCharge(float forMonth) { /* пропорция активных дней */ }
 
-    @Override
-    public void pause(int from, int to) { ...}
+  @Override
+  public void pause(int from, int to) { ...}
 
-    @Override
-    public boolean isPausedOn(int date) { ...}
+  @Override
+  public boolean isPausedOn(int date) { ...}
 
-    @Override
-    public int maxProfiles() {
-        return maxProfiles;
-    }
+  @Override
+  public int maxProfiles() {
+    return maxProfiles;
+  }
 
-    @Override
-    public void addMember(String userId) { ...}
+  @Override
+  public void addMember(String userId) { ...}
 
-    @Override
-    public void removeMember(String userId) { ...}
+  @Override
+  public void removeMember(String userId) { ...}
 }
 ```

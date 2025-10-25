@@ -1,5 +1,6 @@
 package plans;
 
+import homework_exception.InvalidDateRangeException;
 import interfaces.Pausable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -10,7 +11,7 @@ public class PauseWindow implements Pausable {
 
     public PauseWindow(LocalDate from, LocalDate to) {
         if (to.isBefore(from)) {
-            throw new IllegalArgumentException("Неверно выбрана дата");
+            throw new InvalidDateRangeException();
         }
         this.from = from;
         this.to = to;
